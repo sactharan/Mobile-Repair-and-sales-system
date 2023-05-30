@@ -38,6 +38,7 @@ include 'config.php';
                                 <th>Amount Paid</th>
                                 <th>Balance</th>
                                 <th>Payment</th>
+                                <th>Print Invoice</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -73,6 +74,12 @@ include 'config.php';
                                                             ?>
                                                         </td>
                                         <td>
+                                            <button type="button" value="<?= $product['id']; ?>"
+                                                class="printbtn btn btn-info btn-sm">Print</button>
+
+
+                                        </td>
+                                        <td>
                                             <button type="button" value="<?=$product['id'];?>" class="deletebtn btn btn-danger btn-sm">Delete</button>
                                         </td>
                                     </tr>
@@ -94,7 +101,22 @@ include 'config.php';
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 
     <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+    <script>
+    // Function to open a new window or tab and print the invoice
+    function printInvoice(id) {
+        var url = 'print_purchase_invoice.php?id=' + id;
+        window.open(url, '_blank');
+    }
 
+    // Attach event listener to the print button
+    var printButtons = document.querySelectorAll('.printbtn');
+    printButtons.forEach(function (button) {
+        button.addEventListener('click', function () {
+            var id = this.value;
+            printInvoice(id);
+        });
+    });
+</script>
     <script>
        
     
